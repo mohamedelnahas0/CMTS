@@ -485,5 +485,26 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VehicleMaintenanceTracker.Controllers.VehicleController",
+    "Method": "UpdateVehicleStatus",
+    "RelativePath": "api/vehicles/admin/update-status/{vehicleId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vehicleId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "statusDto",
+        "Type": "VehicleMaintenanceTracker.Controllers.VehicleController\u002BUpdateVehicleStatusDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

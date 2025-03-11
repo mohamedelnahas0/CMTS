@@ -147,3 +147,4 @@ C:\Users\xxx68\source\repos\VehicleMaintenanceTracker\VehicleMaintenanceTracker\
 C:\Users\xxx68\source\repos\VehicleMaintenanceTracker\VehicleMaintenanceTracker\obj\Debug\net8.0\ref\VehicleMaintenanceTracker.dll
 C:\Users\xxx68\source\repos\VehicleMaintenanceTracker\VehicleMaintenanceTracker\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\xxx68\source\repos\VehicleMaintenanceTracker\VehicleMaintenanceTracker\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\xxx68\source\repos\VehicleMaintenanceTracker\VehicleMaintenanceTracker\obj\Debug\net8.0\VehicleMaintenanceTracker.sourcelink.json

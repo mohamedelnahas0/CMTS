@@ -126,6 +126,41 @@ namespace VehicleMaintenanceTracker.Controllers
             return Ok(vehicles);
         }
 
+        [HttpPut("admin/update-status/{vehicleId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateVehicleStatus(int vehicleId, [FromBody] UpdateVehicleStatusDto statusDto)
+        {
+            if (statusDto == null || string.IsNullOrEmpty(statusDto.Status))
+            {
+                return BadRequest(new { message = "Invalid status data." });
+            }
+
+            var vehicle = await _context.Vehicles.FindAsync(vehicleId);
+            if (vehicle == null)
+            {
+                return NotFound(new { message = "Vehicle not found." });
+            }
+
+            vehicle.Status = statusDto.Status;
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Vehicle status updated successfully",
+                vehicle = new
+                {
+                    id = vehicle.VehicleId,
+                    type = vehicle.VehicleType,
+                    licensePlate = vehicle.LicensePlateNumber,
+                    newStatus = vehicle.Status
+                }
+            });
+        }
+
+        public class UpdateVehicleStatusDto
+        {
+            public string Status { get; set; }
+        }
     }
 }
     
