@@ -58,7 +58,6 @@ namespace VehicleMaintenanceTracker.Controllers
         {
             try
             {
-                // Get user ID from token claims
                 var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
                 if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))

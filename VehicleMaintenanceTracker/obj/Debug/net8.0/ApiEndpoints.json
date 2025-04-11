@@ -478,6 +478,27 @@
   },
   {
     "ContainingType": "VehicleMaintenanceTracker.Controllers.VehicleController",
+    "Method": "UpdateVehicle",
+    "RelativePath": "api/vehicles/{vehicleId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vehicleId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "vehicleDto",
+        "Type": "VehicleMaintenanceTracker.DTos.UpdateVehicleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VehicleMaintenanceTracker.Controllers.VehicleController",
     "Method": "GetAllVehiclesForAdmin",
     "RelativePath": "api/vehicles/admin",
     "HttpMethod": "GET",
@@ -501,7 +522,7 @@
       },
       {
         "Name": "statusDto",
-        "Type": "VehicleMaintenanceTracker.Controllers.VehicleController\u002BUpdateVehicleStatusDto",
+        "Type": "VehicleMaintenanceTracker.DTos.UpdateVehicleStatusDto",
         "IsRequired": true
       }
     ],

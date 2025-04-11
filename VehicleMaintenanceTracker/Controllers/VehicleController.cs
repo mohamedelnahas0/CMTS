@@ -127,7 +127,7 @@ namespace VehicleMaintenanceTracker.Controllers
         }
 
         [HttpPut("admin/update-status/{vehicleId}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateVehicleStatus(int vehicleId, [FromBody] UpdateVehicleStatusDto statusDto)
         {
             if (statusDto == null || string.IsNullOrEmpty(statusDto.Status))
@@ -157,10 +157,49 @@ namespace VehicleMaintenanceTracker.Controllers
             });
         }
 
-        public class UpdateVehicleStatusDto
+        [HttpPut("{vehicleId}")]
+        public async Task<IActionResult> UpdateVehicle(int vehicleId, [FromBody] UpdateVehicleDto vehicleDto)
         {
-            public string Status { get; set; }
+            if (vehicleDto == null)
+            {
+                return BadRequest(new { message = "Invalid vehicle data." });
+            }
+
+            var userId = GetUserIdFromToken();
+            if (userId == null)
+            {
+                return Unauthorized(new { message = "Unauthorized user." });
+            }
+
+            var vehicle = await _context.Vehicles.FirstOrDefaultAsync(v => v.VehicleId == vehicleId && v.UserId == userId.Value);
+            if (vehicle == null)
+            {
+                return NotFound(new { message = "Vehicle not found or you don't have access to it." });
+            }
+
+            vehicle.VehicleType = vehicleDto.VehicleType;
+            vehicle.LicensePlateNumber = vehicleDto.LicensePlateNumber;
+            vehicle.RegistrationDate = vehicleDto.RegistrationDate;
+            vehicle.ManufactureYear = vehicleDto.ManufactureYear;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Vehicle updated successfully",
+                vehicle = new
+                {
+                    id = vehicle.VehicleId,
+                    type = vehicle.VehicleType,
+                    licensePlate = vehicle.LicensePlateNumber,
+                    registrationDate = vehicle.RegistrationDate,
+                    year = vehicle.ManufactureYear
+                }
+            });
         }
+
+
+
     }
 }
     
